@@ -6,8 +6,6 @@ class CarPark:
                  sensors=None,
                  displays=None
                  ):
-        if plates is None:
-            plates = []
         self.location = location
         self.capacity = capacity
         self.plates = plates or []  # List of current license plates in the car park
