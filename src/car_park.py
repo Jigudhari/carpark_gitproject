@@ -33,6 +33,14 @@ class CarPark:
         elif isinstance(component, Display):
             self.displays.append(component)
 
+    def add_car(self, plate):
+        self.plates.apppend(plate)
+        self.update_display()
+
+    def remove_car(self, plate):
+        self.plates.remove(plate)
+        self.update_display()
+
     def __str__(self):
         """Return a string representation of the CarPark object."""
         return f"CarPark at {self.location} with {self.capacity} bays."
