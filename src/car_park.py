@@ -1,3 +1,7 @@
+from sensor import Sensor
+from display import Display
+
+
 class CarPark:
     def __init__(self,
                  location="Unknown",
@@ -11,6 +15,23 @@ class CarPark:
         self.plates = plates or []  # List of current license plates in the car park
         self.sensors = sensors or []  # List of Sensor objects
         self.displays = displays or []  # List of Display objects
+
+    def register(self, component):
+        """
+               Register a component (Sensor or Display) to the car park.
+
+               Parameters:
+               component (Sensor or Display): The component to register.
+
+               Raises:
+               TypeError: If the component is not a Sensor or Display.
+               """
+        if not isinstance(component, (Sensor, Display)):
+            raise TypeError("Object must be a Sensor or Display.")
+        if isinstance(component, Sensor):
+            self.sensors.append(component)
+        elif isinstance(component, Display):
+            self.displays.append(component)
 
     def __str__(self):
         """Return a string representation of the CarPark object."""
