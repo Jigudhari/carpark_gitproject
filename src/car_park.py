@@ -47,11 +47,11 @@ class CarPark:
 
     def add_car(self, plate):
         self.plates.apppend(plate)
-        self.update_display()
+        self.update_displays()
 
     def remove_car(self, plate):
         self.plates.remove(plate)
-        self.update_display()
+        self.update_displays()
 
 
     def __str__(self):
