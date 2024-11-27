@@ -10,10 +10,12 @@ class Display:
         self.is_on = is_on
         self.car_park = car_park
 
+    # @staticmethod
     def update(self, data):
         for key, value in data.items():
             print(f"{key}: {value}")
-
+            if "message" in data:
+                self.message = data['message']
     def __str__(self):
         return f"Display{self.id_}: {self.message}"
 
