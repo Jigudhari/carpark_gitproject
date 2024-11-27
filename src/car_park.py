@@ -16,6 +16,18 @@ class CarPark:
         self.sensors = sensors or []  # List of Sensor objects
         self.displays = displays or []  # List of Display objects
 
+    @property
+    def available_bays(self):
+        if len(self.plates) > self.capacity:
+            return 0
+        return self.capacity - len(self.plates)
+
+    def update_displays(self):
+        data = {"available_bays": self.available_bays,
+                "temperature": 25}
+        for display in self.displays:
+            display.update(data)
+
     def register(self, component):
         """
                Register a component (Sensor or Display) to the car park.
@@ -40,6 +52,7 @@ class CarPark:
     def remove_car(self, plate):
         self.plates.remove(plate)
         self.update_display()
+
 
     def __str__(self):
         """Return a string representation of the CarPark object."""
