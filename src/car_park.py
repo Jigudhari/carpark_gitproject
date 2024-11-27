@@ -53,7 +53,6 @@ class CarPark:
         self.plates.remove(plate)
         self.update_displays()
 
-
     def __str__(self):
         """Return a string representation of the CarPark object."""
         return f"CarPark at {self.location} with {self.capacity} bays."
