@@ -15,7 +15,8 @@ class Sensor(ABC):
     def update_car_park(self, plate):
         pass
 
-    def _scan_plate(self):
+    @staticmethod
+    def _scan_plate():
         return 'FAKE-' + format(random.randint(0, 999), "03d")
 
     def detect_vehicle(self):
@@ -31,7 +32,11 @@ class EntrySensor(Sensor):
 
 class ExitSensor(Sensor):
     def update_car_park(self, plate):
-        self.car_park.remove_car(plate)
+        if plate in self.car_park.plates:
+            self.car_park.remove_car(plate)
+        else:
+            print(f"Error: Plate {plate} not found in car park!")
+        # self.car_park.remove_car(plate)
         print(f"Outgoing vehicle detected. Plate:{plate}")
 
     def __str__(self):

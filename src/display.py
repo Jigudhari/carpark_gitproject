@@ -16,6 +16,7 @@ class Display:
             print(f"{key}: {value}")
             if "message" in data:
                 self.message = data['message']
+
     def __str__(self):
         return f"Display{self.id_}: {self.message}"
 
