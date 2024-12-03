@@ -13,7 +13,8 @@ class CarPark:
                  sensors=None,
                  displays=None,
                  log_file=Path("log.txt"),
-                 config_file=Path("config.txt")
+                 config_file=Path("config.txt"
+                                  )
                  ):
         """
                 Initialize a CarPark object.
@@ -46,7 +47,6 @@ class CarPark:
     def update_displays(self):
         data = {"available_bays": self.available_bays,
                 "temperature": 25,
-                "message": self.message
                 }
         for display in self.displays:
             display.update(data)
