@@ -5,6 +5,7 @@ from display import Display
 
 # Create the car park object
 car_park = CarPark(location="Moondalup", capacity=100, log_file="moondalup.txt")
+car_park.write_config()  # This creates or updates the config.json file
 
 # Create the entry sensor
 entry_sensor = EntrySensor(id_=1, is_active=True, car_park=car_park)

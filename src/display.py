@@ -4,6 +4,15 @@ class Display:
                  car_park,
                  message="",
                  is_on=False):
+        """
+                Initialize a Display object.
+
+                Parameters:
+                id (str): The unique identifier for the display.
+                car_park (CarPark): The car park associated with this display.
+                message (str): The message to be displayed. Default is an empty string.
+                is_on (bool): Whether the display is turned on. Default is False.
+                """
 
         self.id_ = id_
         self.message = message
@@ -18,6 +27,12 @@ class Display:
                 self.message = data['message']
 
     def __str__(self):
+        """
+                Return a string representation of the Display object.
+
+                Returns:
+                str: A string containing the display's ID and message.
+                """
         return f"Display{self.id_}: {self.message}"
 
 

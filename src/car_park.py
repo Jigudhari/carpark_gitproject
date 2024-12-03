@@ -15,6 +15,18 @@ class CarPark:
                  log_file=Path("log.txt"),
                  config_file=Path("config.txt")
                  ):
+        """
+                Initialize a CarPark object.
+
+                Parameters:
+                location (str): The location of the car park.
+                capacity (int): The maximum number of cars the car park can hold.
+                plates (list): A list of license plate numbers currently in the car park.
+                sensors (list): A list of Sensor objects associated with the car park.
+                displays (list): A list of Display objects associated with the car park.
+                log_file (Path): The file path where car park logs will be written.
+                config_file (Path): The file path to the configuration file for the car park.
+                """
         self.location = location
         self.capacity = capacity
         self.plates = plates or []  # List of current license plates in the car park
@@ -23,7 +35,7 @@ class CarPark:
         self.log_file = log_file if isinstance(log_file, Path) else Path(log_file)
         # create the file if it doesn't exist:
         self.log_file.touch(exist_ok=True)
-        self.config_file = config_file
+        self.config_file = config_file if isinstance(config_file, Path) else Path(config_file)
 
     @property
     def available_bays(self):
@@ -34,7 +46,7 @@ class CarPark:
     def update_displays(self):
         data = {"available_bays": self.available_bays,
                 "temperature": 25,
-                # "message": self.message
+                "message": self.message
                 }
         for display in self.displays:
             display.update(data)
@@ -73,10 +85,15 @@ class CarPark:
 
     # ... inside the CarPark class
     def write_config(self):
-        with open("config.json", "w") as f:  # TODO: use self.config_file; use Path; add optional parm to __init__
-            json.dump({"location": self.location,
-                       "capacity": self.capacity,
-                       "log_file": str(self.log_file)}, f)
+        """Save the car park's configuration to the specified config file."""
+        config_data = {
+            "location": self.location,
+            "capacity": self.capacity,
+            "log_file": str(self.log_file),
+            "plates": self.plates
+        }
+        with self.config_file.open("w") as f:
+            json.dump(config_data, f)
 
     # ... inside the CarPark class
     @classmethod
